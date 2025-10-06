@@ -9,7 +9,10 @@ const cors = require("cors")
 // # json parsing
 app.use(express.json({}))
 app.use(express.urlencoded({extended:false}))
-app.use(cors())
+app.use(cors({
+  origin: process.env.FRONTEND_URI,
+  credentials: true
+}))
 app.use(morgan("dev"))
 app.use("/api/v1",require("./router"))
 
